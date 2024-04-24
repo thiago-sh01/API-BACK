@@ -1,19 +1,23 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
+const bodyParser = require('body-parser');
+
 const {
-    criarUsuario,
+    createUser,
     listarUsuarios,
     buscarUsuario,
     atualizarUsuario,
     deletarUsuario
-} = './controllers/usuarios.js'
-app.get("/", (req, res) => {
+} = require('./controllers/usuarios.js')
+/* app.get("/", (req, res) => {
     res.send('Bem vindo a minha aplocação Node.js com Express')
-});
+}); */
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 
-app.post('/usuarios', criarUsuario);
+app.post('/usuarios', createUser);
 app.get('/usuarios', listarUsuarios);
 app.get('/usuarios/:id', buscarUsuario);
 app.put('/usuarios/:id', atualizarUsuario);
