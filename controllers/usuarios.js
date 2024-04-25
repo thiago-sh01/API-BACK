@@ -1,4 +1,4 @@
-const { User } = require("../models/createUser");
+const { User } = require("../models/User");
 
 async function createUser(req, res) {
   try {
@@ -17,8 +17,15 @@ async function createUser(req, res) {
   }
 }
 
-function listarUsuarios(req, res) {
-  res.send("Listar usuário");
+async function listUser(req, res) {
+  try {
+    const usuarios = await User.findAll();
+
+    res.status(200).json(usuarios);
+  } catch (error) {
+    console.error("Erro ao listar usuários", error);
+    res.status(500).json({ error: "Erro interno no Servidor" });
+  }
 }
 
 function buscarUsuario(req, res) {
@@ -35,7 +42,7 @@ function deletarUsuario(req, res) {
 
 module.exports = {
   createUser,
-  listarUsuarios,
+  listUser,
   buscarUsuario,
   atualizarUsuario,
   deletarUsuario,

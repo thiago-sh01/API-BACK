@@ -5,20 +5,17 @@ const bodyParser = require('body-parser');
 
 const {
     createUser,
-    listarUsuarios,
+    listUser,
     buscarUsuario,
     atualizarUsuario,
     deletarUsuario
 } = require('./controllers/usuarios.js')
-/* app.get("/", (req, res) => {
-    res.send('Bem vindo a minha aplocação Node.js com Express')
-}); */
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.post('/usuarios', createUser);
-app.get('/usuarios', listarUsuarios);
+app.get('/usuarios', listUser);
 app.get('/usuarios/:id', buscarUsuario);
 app.put('/usuarios/:id', atualizarUsuario);
 app.delete('/usuarios/:id', deletarUsuario);
