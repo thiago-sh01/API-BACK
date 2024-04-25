@@ -73,7 +73,7 @@ async function updateUserById(req, res) {
   }
 }
 
-async function deleteUser(req, res) {
+async function deleteUserById(req, res) {
   try {
     const { id } = req.params;
 
@@ -99,5 +99,5 @@ module.exports = {
   listUser,
   searchUserById,
   updateUserById,
-  deleteUser,
+  deleteUserById,
 };
