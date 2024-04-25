@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const {
     createUser,
     listUser,
-    searchUser,
+    searchUserById,
     atualizarUsuario,
     deletarUsuario
 } = require('./controllers/usuarios.js')
@@ -14,13 +14,13 @@ const {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.post('/usuarios', createUser);
-app.get('/usuarios', listUser);
-app.get('/usuarios/:id', searchUser);
-app.put('/usuarios/:id', atualizarUsuario);
-app.delete('/usuarios/:id', deletarUsuario);
-
-
 app.listen(PORT,() =>{
     console.log(`Servidor rodando na porta ${PORT}`);
 })
+
+app.post('/usuarios', createUser);
+app.get('/usuarios', listUser);
+app.get('/usuarios/:id', searchUserById);
+app.put('/usuarios/:id', atualizarUsuario);
+app.delete('/usuarios/:id', deletarUsuario);
+

@@ -28,9 +28,20 @@ async function listUser(req, res) {
   }
 }
 
-function searchUser(req, res) {
+async function searchUserById(req, res) {
+  try {
+    const { id } = req.params;
+    const usuario = await User.findByPk(id);
 
+    if (!usuario) {
+      return res.status(400).json({ error: "Usuário não encontrado" });
+    }
 
+    res.status(200).json(usuario);
+  } catch (error) {
+    console.error("Erro ao buscar usuário por ID", error);
+    res.status(500).json({ error: "Erro interno no Servidor" });
+  }
 }
 
 function atualizarUsuario(req, res) {
@@ -44,7 +55,7 @@ function deletarUsuario(req, res) {
 module.exports = {
   createUser,
   listUser,
-  searchUser,
+  searchUserById,
   atualizarUsuario,
   deletarUsuario,
 };
