@@ -44,7 +44,7 @@ async function searchUserById(req, res) {
   }
 }
 
-async function updateUser(req, res) {
+async function updateUserById(req, res) {
   try {
     const { id } = req.params;
     const { name, email, idade } = req.body;
@@ -81,6 +81,6 @@ module.exports = {
   createUser,
   listUser,
   searchUserById,
-  updateUser,
+  updateUserById,
   deletarUsuario,
 };
