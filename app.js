@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const {
     createUser,
     listUser,
-    buscarUsuario,
+    searchUser,
     atualizarUsuario,
     deletarUsuario
 } = require('./controllers/usuarios.js')
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.post('/usuarios', createUser);
 app.get('/usuarios', listUser);
-app.get('/usuarios/:id', buscarUsuario);
+app.get('/usuarios/:id', searchUser);
 app.put('/usuarios/:id', atualizarUsuario);
 app.delete('/usuarios/:id', deletarUsuario);
 

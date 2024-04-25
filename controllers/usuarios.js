@@ -28,8 +28,9 @@ async function listUser(req, res) {
   }
 }
 
-function buscarUsuario(req, res) {
-  res.send("Buscar usuário pelo ID");
+function searchUser(req, res) {
+
+
 }
 
 function atualizarUsuario(req, res) {
@@ -43,7 +44,7 @@ function deletarUsuario(req, res) {
 module.exports = {
   createUser,
   listUser,
-  buscarUsuario,
+  searchUser,
   atualizarUsuario,
   deletarUsuario,
 };
