@@ -8,7 +8,7 @@ const {
     listUser,
     searchUserById,
     updateUserById,
-    deletarUsuario
+    deleteUser
 } = require('./controllers/usuarios.js')
 
 app.use(bodyParser.json());
@@ -22,5 +22,5 @@ app.post('/usuarios', createUser);
 app.get('/usuarios', listUser);
 app.get('/usuarios/:id', searchUserById);
 app.put('/usuarios/:id', updateUserById);
-app.delete('/usuarios/:id', deletarUsuario);
+app.delete('/usuarios/:id', deleteUser);
 

@@ -73,8 +73,25 @@ async function updateUserById(req, res) {
   }
 }
 
-function deletarUsuario(req, res) {
-  res.send("Deletar usuário pelo ID");
+async function deleteUser(req, res) {
+  try {
+    const { id } = req.params;
+
+    const existente = await User.findByPk(id);
+    if (!existente) {
+      return res.status(404).json({ error: "Usuário não encontrado" });
+    }
+    await User.destroy({
+      where: {
+        id,
+      },
+    });
+
+    res.status(200).json({ message: "Usuário excluído com sucesso" });
+  } catch (error) {
+    console.error("Erro ao excluir usuário", error);
+    res.status(500).json({ error: "Erro interno no Servidor" });
+  }
 }
 
 module.exports = {
@@ -82,5 +99,5 @@ module.exports = {
   listUser,
   searchUserById,
   updateUserById,
-  deletarUsuario,
+  deleteUser,
 };
