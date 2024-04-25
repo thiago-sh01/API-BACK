@@ -44,8 +44,33 @@ async function searchUserById(req, res) {
   }
 }
 
-function atualizarUsuario(req, res) {
-  res.send("Atualizar usuário pelo ID");
+async function updateUser(req, res) {
+  try {
+    const { id } = req.params;
+    const { name, email, idade } = req.body;
+
+    const existente = await User.findByPk(id);
+    if (!existente) {
+      return res.status(400).json({ error: "Usuário não encontrado" });
+    }
+
+    await User.update(
+      {
+        name,
+        email,
+        idade,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+    res.status(200).json({ message: "Usuário atualizado com sucesso" });
+  } catch (error) {
+    console.error("Erro ao atualizar Usuário", error);
+    res.status(500).json({ error: "Erro interno no Servidor" });
+  }
 }
 
 function deletarUsuario(req, res) {
@@ -56,6 +81,6 @@ module.exports = {
   createUser,
   listUser,
   searchUserById,
-  atualizarUsuario,
+  updateUser,
   deletarUsuario,
 };

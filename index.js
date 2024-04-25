@@ -7,7 +7,7 @@ const {
     createUser,
     listUser,
     searchUserById,
-    atualizarUsuario,
+    updateUser,
     deletarUsuario
 } = require('./controllers/usuarios.js')
 
@@ -21,6 +21,6 @@ app.listen(PORT,() =>{
 app.post('/usuarios', createUser);
 app.get('/usuarios', listUser);
 app.get('/usuarios/:id', searchUserById);
-app.put('/usuarios/:id', atualizarUsuario);
+app.put('/usuarios/:id', updateUser);
 app.delete('/usuarios/:id', deletarUsuario);
 
