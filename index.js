@@ -11,7 +11,4 @@ app.listen(PORT,() =>{
     console.log(`Servidor rodando na porta ${PORT}`);
 })
 
-app.use('/usuario', Router);
-
-
-module.exports = app
+app.use(Router);

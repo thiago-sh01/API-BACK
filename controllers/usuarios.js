@@ -1,4 +1,4 @@
-const { User } = require("../models/User");
+const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 async function createUser(req, res) {
@@ -57,8 +57,10 @@ async function updateUserById(req, res) {
   try {
     const { id } = req.params;
     const { name, email, idade, senha } = req.body;
-
     const existente = await User.findByPk(id);
+    
+    let usuarioExistente = await User.findByPk(id)
+
     if (!existente) {
       return res.status(400).json({ error: "Usuário não encontrado" });
     }
@@ -69,7 +71,7 @@ async function updateUserById(req, res) {
 
     if (senha) {
       const hashedPassword = await bcrypt.hash(senha, 10);
-     usuarioExistente.senha = hashedPassword; 
+      usuarioExistente.senha = hashedPassword;
     }
 
     await usuarioExistente.save();
